@@ -1,1 +1,38 @@
-{{- toYaml .Values }}
+apiVersion: databases.spotahome.com/v1
+kind: RedisFailover
+metadata:
+  name: {{ .Values.metadata.name }}
+
+spec:
+  sentinel:
+    replicas: {{ .Values.spec.sentinel.replicas }}
+    image: registry.suse.com/harbor/harbor-redis:2.1.1
+    customConfig:
+      - "dir /data"
+{{- if .Values.spec.sentinel.resources }}
+    resources:
+{{ toYaml .Values.spec.sentinel.resouces | indent 6 }}
+{{- end }}
+    securityContext:
+      fsGroup: 999
+      runAsUser: 999
+      runAsGroup: 999
+  redis:
+    replicas: {{ .Values.spec.redis.replicas }}
+    image: registry.suse.com/harbor/harbor-redis:2.1.1
+    customConfig:
+      - "dir /data"
+{{- if .Values.spec.redis.resources }}
+    resources:
+{{ toYaml .Values.spec.redis.resouces | indent 6 }}
+{{- end }}
+    securityContext:
+      fsGroup: 999
+      runAsUser: 999
+      runAsGroup: 999
+{{- if .Values.spec.redis.storage }}
+    storage:
+{{ toYaml .Values.spec.redis.storage | indent 6 }}
+{{- end }}
+  auth:
+    secretPath: {{ .Values.spec.auth.secretPath }}

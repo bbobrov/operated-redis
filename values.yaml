@@ -1,27 +1,15 @@
-apiVersion: databases.spotahome.com/v1
-kind: RedisFailover
 metadata:
   name: harbor-redis
 spec:
   sentinel:
     replicas: 3
-    image: registry.suse.com/harbor/harbor-redis:2.1.0
-    customConfig:
-      - "dir /data"
     resources:
       requests:
         cpu: 100m
       limits:
         memory: 100Mi
-    securityContext:
-      fsGroup: 999
-      runAsUser: 999
-      runAsGroup: 999
   redis:
     replicas: 3
-    image: registry.suse.com/harbor/harbor-redis:2.1.0
-    customConfig:
-      - "dir /data"
     resources:
       requests:
         cpu: 100m
@@ -29,10 +17,6 @@ spec:
       limits:
         cpu: 400m
         memory: 500Mi
-    securityContext:
-      fsGroup: 999
-      runAsUser: 999
-      runAsGroup: 999
     storage:
       keepAfterDeletion: true
       persistentVolumeClaim:
