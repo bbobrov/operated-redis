@@ -11,7 +11,7 @@ spec:
       - "dir /data"
 {{- if .Values.spec.sentinel.resources }}
     resources:
-{{ toYaml .Values.spec.sentinel.resouces | indent 6 }}
+{{ toYaml .Values.spec.sentinel.resources | indent 6 }}
 {{- end }}
     securityContext:
       fsGroup: 999
@@ -24,7 +24,7 @@ spec:
       - "dir /data"
 {{- if .Values.spec.redis.resources }}
     resources:
-{{ toYaml .Values.spec.redis.resouces | indent 6 }}
+{{ toYaml .Values.spec.redis.resources | indent 6 }}
 {{- end }}
     securityContext:
       fsGroup: 999
