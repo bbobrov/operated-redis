@@ -1,32 +1,31 @@
-metadata:
-  name: harbor-redis
-spec:
-  sentinel:
-    replicas: 3
-    resources:
-      requests:
-        cpu: 100m
-      limits:
-        memory: 100Mi
-  redis:
-    replicas: 3
-    resources:
-      requests:
-        cpu: 100m
-        memory: 100Mi
-      limits:
-        cpu: 400m
-        memory: 500Mi
-    storage:
-      keepAfterDeletion: true
-      persistentVolumeClaim:
-        metadata:
-          name: harbor-redis-data
-        spec:
-          accessModes:
-            - ReadWriteOnce
-          resources:
-            requests:
-              storage: 10Gi
-  auth:
-    secretPath: redis-auth
+enabled: false
+name: harbor-redis
+sentinel:
+  replicas: 3
+  resources:
+    requests:
+      cpu: 100m
+    limits:
+      memory: 100Mi
+redis:
+  replicas: 3
+  resources:
+    requests:
+      cpu: 100m
+      memory: 100Mi
+    limits:
+      cpu: 400m
+      memory: 500Mi
+  storage:
+    keepAfterDeletion: true
+    persistentVolumeClaim:
+      metadata:
+        name: harbor-redis-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+auth:
+  secretPath: redis-auth

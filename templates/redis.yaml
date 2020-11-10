@@ -1,38 +1,38 @@
 apiVersion: databases.spotahome.com/v1
 kind: RedisFailover
 metadata:
-  name: {{ .Values.metadata.name }}
+  name: {{ .Values.name }}
 
 spec:
   sentinel:
-    replicas: {{ .Values.spec.sentinel.replicas }}
+    replicas: {{ .Values.sentinel.replicas }}
     image: registry.suse.com/harbor/harbor-redis:2.1.1
     customConfig:
       - "dir /data"
-{{- if .Values.spec.sentinel.resources }}
+{{- if .Values.sentinel.resources }}
     resources:
-{{ toYaml .Values.spec.sentinel.resources | indent 6 }}
+{{ toYaml .Values.sentinel.resources | indent 6 }}
 {{- end }}
     securityContext:
       fsGroup: 999
       runAsUser: 999
       runAsGroup: 999
   redis:
-    replicas: {{ .Values.spec.redis.replicas }}
+    replicas: {{ .Values.redis.replicas }}
     image: registry.suse.com/harbor/harbor-redis:2.1.1
     customConfig:
       - "dir /data"
-{{- if .Values.spec.redis.resources }}
+{{- if .Values.redis.resources }}
     resources:
-{{ toYaml .Values.spec.redis.resources | indent 6 }}
+{{ toYaml .Values.redis.resources | indent 6 }}
 {{- end }}
     securityContext:
       fsGroup: 999
       runAsUser: 999
       runAsGroup: 999
-{{- if .Values.spec.redis.storage }}
+{{- if .Values.redis.storage }}
     storage:
-{{ toYaml .Values.spec.redis.storage | indent 6 }}
+{{ toYaml .Values.redis.storage | indent 6 }}
 {{- end }}
   auth:
-    secretPath: {{ .Values.spec.auth.secretPath }}
+    secretPath: {{ .Values.auth.secretPath }}
