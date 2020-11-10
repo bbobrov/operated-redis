@@ -1,5 +1,5 @@
 apiVersion: v2
-name: registry-operated-redis
+name: operated-redis
 description: A Helm chart for redis managed by redis-operator
 
 # A chart can be either an 'application' or a 'library' chart.
