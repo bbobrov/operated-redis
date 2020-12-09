@@ -4,7 +4,7 @@ enabled: false
 # name of the redisfailover deployment. The name also controls the
 # domain name of redis deployment: sentinel will be available on
 # rfs-<name>:26379.
-name: harbor-redisfailover
+name: ""
 sentinel:
   replicas: 3
 # resources:
