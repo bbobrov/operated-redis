@@ -1,3 +1,10 @@
+{{- /*
+Normally, this should be controlled via Helm's dependencies mechanism.
+But OBS and/or registry.s.d strip some values from Chart.yaml,
+including dependencies information.
+The check of .enabled is a workaround for this problem.
+*/ }}
+{{- if .Values.enabled -}}
 apiVersion: databases.spotahome.com/v1
 kind: RedisFailover
 metadata:
@@ -36,3 +43,4 @@ spec:
 {{- end }}
   auth:
     secretPath: {{ .Values.auth.secretPath }}
+{{- end -}}
