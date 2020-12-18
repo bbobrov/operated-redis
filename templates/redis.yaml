@@ -13,7 +13,7 @@ metadata:
 spec:
   sentinel:
     replicas: {{ .Values.sentinel.replicas }}
-    image: registry.suse.com/harbor/harbor-redis:2.1.1
+    image: registry.suse.com/harbor/harbor-redis:2.1.2
     customConfig:
       - "dir /data"
 {{- if .Values.sentinel.resources }}
@@ -26,7 +26,7 @@ spec:
       runAsGroup: 999
   redis:
     replicas: {{ .Values.redis.replicas }}
-    image: registry.suse.com/harbor/harbor-redis:2.1.1
+    image: registry.suse.com/harbor/harbor-redis:2.1.2
     customConfig:
       - "dir /data"
 {{- if .Values.redis.resources }}
