@@ -6,6 +6,7 @@ enabled: false
 # rfs-<name>:26379.
 name: ""
 sentinel:
+  image: registry.suse.com/harbor/harbor-redis:2.1.2
   replicas: 3
 # resources:
 #   requests:
@@ -14,6 +15,7 @@ sentinel:
 #     memory: 100Mi
 redis:
   replicas: 3
+  image: registry.suse.com/harbor/harbor-redis:2.1.2
 # resources:
 #   requests:
 #     cpu: 100m
