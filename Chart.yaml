@@ -2,6 +2,6 @@ apiVersion: v2
 name: redisfailover
 description: A Helm chart for redis managed by redis-operator
 type: application
-version: 1.0.0
+version: 1.0.3
 # appVersion is set to be the same as the version in redisoperator's Chart.yaml
 appVersion: 3.1.0
